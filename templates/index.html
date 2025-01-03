@@ -3,7 +3,7 @@
 {% block title %}Tool Management System{% endblock %}
 
 {% block content %}
-    <h1 class="mt-5">Tool Management System</h1>
+        <#h1 class="mt-5">Tool Management System</h1>
     <h2 class="mt-5">Currently Borrowed Items</h2>
     <ul class="list-group mt-3">
         {% for transaction, tool, user in borrowed_items %}
@@ -12,4 +12,13 @@
         </li>
         {% endfor %}
     </ul>
+curl https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import # One-time step  
+curl -Os https://cli.codecov.io/latest/macos/codecov
+curl -Os https://cli.codecov.io/latest/macos/codecov.SHA256SUM
+curl -Os https://cli.codecov.io/latest/macos/codecov.SHA256SUM.sig
+gpg --verify codecov.SHA256SUM.sig codecov.SHA256SUM
+
+shasum -a 256 -c codecov.SHA256SUM 
+sudo chmod +x codecov
+./codecov --help
 {% endblock %}
